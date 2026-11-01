@@ -1,0 +1,26 @@
+{
+    "selected_system": "Weighted Soft Voting",
+    "selected_models": [
+        "LogisticRegression",
+        "ANN",
+        "GRU",
+        "BiLSTM"
+    ],
+    "weights": {
+        "LogisticRegression": 0.25804584273518205,
+        "ANN": 0.2554946431994586,
+        "GRU": 0.2451743519048715,
+        "BiLSTM": 0.24128516216048787
+    },
+    "sentiment_mapping": {
+        "Negative": 0,
+        "Neutral": 1,
+        "Positive": 2
+    },
+    "classes": [
+        "Negative",
+        "Neutral",
+        "Positive"
+    ],
+    "selection_metric": "Validation Macro F1"
+}

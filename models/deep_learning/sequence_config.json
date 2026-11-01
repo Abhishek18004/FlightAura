@@ -1,0 +1,16 @@
+{
+    "max_vocab_size": 30000,
+    "vocabulary_size": 18097,
+    "embedding_dim": 100,
+    "max_sequence_length": 365,
+    "sentiment_to_id": {
+        "Negative": 0,
+        "Neutral": 1,
+        "Positive": 2
+    },
+    "id_to_sentiment": {
+        "0": "Negative",
+        "1": "Neutral",
+        "2": "Positive"
+    }
+}

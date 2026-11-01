@@ -1,0 +1,25 @@
+{
+    "selected_system": "Weighted Soft Voting",
+    "selected_individual_model": null,
+    "selected_ensemble_models": [
+        "LogisticRegression",
+        "ANN",
+        "GRU",
+        "BiLSTM"
+    ],
+    "ensemble_weights": {
+        "LogisticRegression": 0.25804584273518205,
+        "ANN": 0.2554946431994586,
+        "GRU": 0.2451743519048715,
+        "BiLSTM": 0.24128516216048787
+    },
+    "class_mapping": {
+        "0": "Negative",
+        "1": "Neutral",
+        "2": "Positive"
+    },
+    "selection_metric": "Validation Macro F1",
+    "max_sequence_length": 365,
+    "vocabulary_size": 18097,
+    "embedding_dimension": 100
+}

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FlightAura</title>
+
+    <!-- FlightAura Favicon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/favicon.png') }}"
+    >
+
+    <meta
+        name="description"
+        content="Investigate airline claims using historical passenger reviews."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}"
+        defer
+    ></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+        <div class="header-inner">
+
+            <a href="/" class="brand">
+                <span class="brand-mark">F</span>
+
+                <span class="brand-copy">
+                    <strong>FLIGHTAURA</strong>
+                    <small>PASSENGER INTELLIGENCE</small>
+                </span>
+            </a>
+
+            <nav class="main-nav">
+                <a href="#investigate" class="nav-link active">
+                    Investigate
+                </a>
+
+                <a href="#review-analyzer" class="nav-link">
+                    Review Analyzer
+                </a>
+
+                <a href="#about" class="nav-link">
+                    About
+                </a>
+            </nav>
+
+            <div class="header-status">
+                <span class="status-dot"></span>
+                LOCAL DATA ENGINE
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    THE PASSENGER PERSPECTIVE
+                </div>
+
+                <h1>
+                    Beyond the
+                    <span>boarding pass.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Investigate airline experiences through the voices
+                    of passengers. Explore historical reviews, identify
+                    patterns and see the evidence behind every finding.
+                </p>
+
+                <div class="hero-meta">
+                    <span>01 / CLAIM INVESTIGATION</span>
+                    <span>02 / REVIEW INTELLIGENCE</span>
+                </div>
+
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="flight-path">
+                    <span class="flight-point"></span>
+                    <span class="flight-point second"></span>
+                </div>
+
+                <div class="hero-visual-center">
+                    <span class="hero-visual-number">01</span>
+                    <span class="hero-visual-label">FLIGHT<br>INSIGHT</span>
+                </div>
+
+                <div class="hero-coordinate coordinate-one">
+                    17°N 78°E
+                </div>
+
+                <div class="hero-coordinate coordinate-two">
+                    PASSENGER DATA / EST. 2024
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CLAIM INVESTIGATION -->
+
+        <section class="workspace-section" id="investigate">
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        INVESTIGATION DESK
+                    </div>
+
+                    <h2>Put a claim to the test.</h2>
+
+                    <p>
+                        Enter an airline experience claim and examine
+                        what historical passenger reviews suggest.
+                    </p>
+                </div>
+
+                <div class="section-index">01 — 02</div>
+
+            </div>
+
+
+            <div class="investigation-layout">
+
+                <!-- INPUT PANEL -->
+
+                <div class="input-panel">
+
+                    <div class="panel-topline">
+                        <span>NEW INVESTIGATION</span>
+                        <span class="panel-number">FA / 001</span>
+                    </div>
+
+                    <form id="claim-form">
+
+                        <div class="form-field">
+
+                            <label for="claim-input">
+                                What would you like to investigate?
+                            </label>
+
+                            <textarea
+                                id="claim-input"
+                                name="claim"
+                                rows="4"
+                                minlength="10"
+                                maxlength="1000"
+                                placeholder="Example: Emirates provides comfortable economy class seating and generous legroom."
+                                required
+                            ></textarea>
+
+                            <div class="input-footnote">
+                                <span>Be specific about the passenger experience.</span>
+                                <span id="claim-character-count">0 / 1000</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-field">
+
+                                <label for="airline-select">
+                                    Airline
+
+                                    <span class="optional-label">
+                                        OPTIONAL
+                                    </span>
+                                </label>
+
+                                <select id="airline-select">
+                                    <option value="">Detect from claim</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-field">
+
+                                <label for="aspect-select">
+                                    Service aspect
+
+                                    <span class="optional-label">
+                                        OPTIONAL
+                                    </span>
+                                </label>
+
+                                <select id="aspect-select">
+                                    <option value="">Auto-detect aspect</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            id="investigate-button"
+                            class="primary-button"
+                        >
+                            <span>Investigate claim</span>
+                            <span class="button-arrow">↗</span>
+                        </button>
+
+                        <div
+                            id="investigation-error"
+                            class="error-message hidden"
+                            role="alert"
+                        ></div>
+
+                    </form>
+
+
+                    <div class="example-claims">
+
+                        <span class="examples-label">TRY AN EXAMPLE</span>
+
+                        <button
+                            type="button"
+                            class="example-chip"
+                            data-claim="Qatar Airways provides excellent cabin crew service."
+                        >
+                            Cabin crew service
+                        </button>
+
+                        <button
+                            type="button"
+                            class="example-chip"
+                            data-claim="Emirates offers comfortable economy class seats."
+                        >
+                            Seat comfort
+                        </button>
+
+                        <button
+                            type="button"
+                            class="example-chip"
+                            data-claim="Turkish Airlines provides poor value for money."
+                        >
+                            Value for money
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INTRO / SIDE PANEL -->
+
+                <aside class="insight-panel">
+
+                    <div class="insight-panel-top">
+                        <span>HOW IT WORKS</span>
+                        <span class="small-circle">i</span>
+                    </div>
+
+                    <div class="insight-step">
+                        <span class="step-number">01</span>
+
+                        <div>
+                            <strong>Identify</strong>
+                            <p>
+                                Detect the airline and the passenger
+                                experience being discussed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="insight-connector"></div>
+
+                    <div class="insight-step">
+                        <span class="step-number">02</span>
+
+                        <div>
+                            <strong>Retrieve</strong>
+                            <p>
+                                Find similar reviews from passengers
+                                who flew with that airline.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="insight-connector"></div>
+
+                    <div class="insight-step">
+                        <span class="step-number">03</span>
+
+                        <div>
+                            <strong>Compare</strong>
+                            <p>
+                                Examine positive, negative and neutral
+                                evidence.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="insight-note">
+                        <span class="note-icon">✳</span>
+
+                        <p>
+                            Findings are based on the available historical
+                            review dataset, not live airline operations.
+                        </p>
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOADING -->
+
+        <section
+            id="loading-section"
+            class="loading-section hidden"
+            aria-live="polite"
+        >
+            <div class="loading-spinner"></div>
+
+            <h3>Reviewing passenger experiences</h3>
+
+            <p>
+                Retrieving relevant reviews and evaluating evidence.
+            </p>
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section
+            id="results-section"
+            class="results-section hidden"
+        >
+
+            <div class="results-heading">
+                <div>
+                    <div class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        INVESTIGATION REPORT
+                    </div>
+
+                    <h2>Evidence overview</h2>
+                </div>
+
+                <span class="report-tag">FLIGHTAURA / REPORT</span>
+            </div>
+
+
+            <div class="claim-summary-card">
+
+                <div class="summary-main">
+                    <span class="summary-label">CLAIM UNDER INVESTIGATION</span>
+                    <h3 id="result-claim"></h3>
+
+                    <div class="summary-tags">
+                        <span id="result-airline" class="summary-tag"></span>
+                        <span id="result-aspect" class="summary-tag"></span>
+                    </div>
+                </div>
+
+                <div id="verdict-container" class="verdict-container">
+                    <span class="verdict-caption">EVIDENCE VERDICT</span>
+                    <strong id="result-verdict">—</strong>
+                    <p id="result-explanation"></p>
+                </div>
+
+            </div>
+
+
+            <div class="statistics-grid">
+
+                <div class="stat-card">
+                    <span class="stat-label">REVIEWS RETRIEVED</span>
+                    <strong id="stat-total">0</strong>
+                    <small>Relevant historical reviews</small>
+                </div>
+
+                <div class="stat-card supporting-stat">
+                    <span class="stat-label">SUPPORTING</span>
+                    <strong id="stat-supporting">0</strong>
+                    <small>Consistent with the claim</small>
+                </div>
+
+                <div class="stat-card contradicting-stat">
+                    <span class="stat-label">CONTRADICTING</span>
+                    <strong id="stat-contradicting">0</strong>
+                    <small>Opposing the claim</small>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">NEUTRAL</span>
+                    <strong id="stat-neutral">0</strong>
+                    <small>Neither clearly positive nor negative</small>
+                </div>
+
+            </div>
+
+
+            <div class="evidence-section">
+
+                <div class="evidence-heading">
+                    <div>
+                        <h3>Passenger evidence</h3>
+                        <p>
+                            Review excerpts are ranked by similarity
+                            to the investigated claim.
+                        </p>
+                    </div>
+
+                    <span class="evidence-count" id="evidence-count">
+                        0 REVIEWS
+                    </span>
+                </div>
+
+
+                <div class="evidence-columns">
+
+                    <div class="evidence-group">
+                        <div class="evidence-group-heading">
+                            <span class="evidence-indicator positive"></span>
+                            <h4 id="supporting-heading">Supporting evidence</h4>
+                        </div>
+
+                        <div id="supporting-reviews" class="review-list">
+                        </div>
+                    </div>
+
+
+                    <div class="evidence-group">
+                        <div class="evidence-group-heading">
+                            <span class="evidence-indicator negative"></span>
+                            <h4 id="contradicting-heading">Contradicting evidence</h4>
+                        </div>
+
+                        <div id="contradicting-reviews" class="review-list">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="neutral-evidence-section"
+                    class="neutral-evidence-section hidden"
+                >
+                    <div class="evidence-group-heading">
+                        <span class="evidence-indicator neutral"></span>
+                        <h4>Neutral evidence</h4>
+                    </div>
+
+                    <div id="neutral-reviews" class="review-list neutral-list">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="methodology-card">
+                <div class="methodology-icon">✳</div>
+
+                <div>
+                    <strong>How to interpret this report</strong>
+
+                    <p id="result-methodology"></p>
+
+                    <p id="result-limitation" class="limitation-text"></p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- REVIEW ANALYZER -->
+
+        <section class="review-analyzer-section" id="review-analyzer">
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        MODEL LAB
+                    </div>
+
+                    <h2>Analyze a passenger review.</h2>
+
+                    <p>
+                        Explore the predictions generated by FlightAura's
+                        trained sentiment and recommendation models.
+                    </p>
+                </div>
+
+                <div class="section-index">02 — 02</div>
+
+            </div>
+
+
+            <div class="review-analyzer-layout">
+
+                <div class="analyzer-input-panel">
+
+                    <label for="review-input">
+                        Enter a passenger review
+                    </label>
+
+                    <textarea
+                        id="review-input"
+                        rows="6"
+                        maxlength="5000"
+                        placeholder="The cabin crew were very friendly, the seats were comfortable and the food was excellent..."
+                    ></textarea>
+
+                    <button
+                        type="button"
+                        id="analyze-review-button"
+                        class="primary-button"
+                    >
+                        <span>Analyze review</span>
+                        <span class="button-arrow">↗</span>
+                    </button>
+
+                    <div
+                        id="review-error"
+                        class="error-message hidden"
+                        role="alert"
+                    ></div>
+
+                </div>
+
+
+                <div id="review-results" class="review-results hidden">
+
+                    <div class="prediction-card">
+                        <span class="prediction-label">PREDICTED SENTIMENT</span>
+                        <strong id="review-sentiment">—</strong>
+                        <div id="sentiment-probabilities" class="probability-list">
+                        </div>
+                    </div>
+
+                    <div class="prediction-card">
+                        <span class="prediction-label">RECOMMENDATION PREDICTION</span>
+                        <strong id="review-recommendation">—</strong>
+                        <p id="review-recommendation-probability"></p>
+                    </div>
+
+                    <p class="prediction-disclaimer">
+                        Predictions are generated by the trained models.
+                        Confidence values are model probabilities, not
+                        guarantees of correctness.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="about-section" id="about">
+
+            <div class="about-left">
+                <div class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    ABOUT FLIGHTAURA
+                </div>
+
+                <h2>
+                    Better context for
+                    <span>every journey.</span>
+                </h2>
+            </div>
+
+            <div class="about-right">
+                <p>
+                    FlightAura is a passenger-review intelligence
+                    application built around historical airline experiences.
+                    It combines natural language processing, machine
+                    learning and evidence retrieval to make large collections
+                    of passenger feedback easier to explore.
+                </p>
+
+                <p>
+                    Its findings reflect the dataset available to the
+                    application and should be interpreted as historical
+                    passenger feedback rather than an official airline rating.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <a href="/" class="footer-brand">
+            <span class="brand-mark">F</span>
+            FLIGHTAURA
+        </a>
+
+        <span class="footer-copy">
+            PASSENGER INTELLIGENCE / BUILT WITH DATA
+        </span>
+
+        <a href="#top" class="back-to-top">
+            BACK TO TOP ↑
+        </a>
+
+    </footer>
+
+</body>
+</html>

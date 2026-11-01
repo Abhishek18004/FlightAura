@@ -1,0 +1,35 @@
+{
+    "project": "FlightAura",
+    "dataset": "airline_reviews_unique.csv",
+    "random_state": 42,
+    "split": {
+        "training": 5668,
+        "validation": 1215,
+        "testing": 1215
+    },
+    "sentiment": {
+        "selected_system": "Weighted Soft Voting",
+        "test_macro_f1": 0.7110165239492355
+    },
+    "recommendation": {
+        "selected_system": "BiLSTM",
+        "test_macro_f1": 0.8978670441233894
+    },
+    "architectures": [
+        "ANN",
+        "SimpleRNN",
+        "LSTM",
+        "GRU",
+        "Bidirectional LSTM",
+        "Custom Self-Attention"
+    ],
+    "classical_models": [
+        "Logistic Regression",
+        "Multinomial Naive Bayes"
+    ],
+    "ensemble_methods": [
+        "Hard Voting",
+        "Soft Voting",
+        "Weighted Soft Voting"
+    ]
+}

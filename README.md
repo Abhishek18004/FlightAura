@@ -4,6 +4,49 @@
 
 The platform provides two main functionalities: **Review Analysis**, which predicts the sentiment and recommendation of an individual passenger review, and **Claim Investigation**, which retrieves relevant passenger experiences to evaluate whether a particular claim about an airline is supported by the available evidence.
 
+## How It Works
+
+FlightAura consists of two interconnected analysis workflows.
+
+### 1. Claim Investigation
+
+1. The user enters a claim about an airline and selects the relevant airline and service aspect.
+2. The claim is processed to identify its subject, aspect, and positive or negative direction.
+3. The system filters the review dataset to retrieve reviews associated with the selected airline.
+4. TF-IDF vectorization and cosine similarity are used to identify relevant passenger experiences.
+5. Retrieved reviews are evaluated using structured aspect ratings, aspect-related review text, or the sentiment prediction model when necessary.
+6. The evidence is grouped into supporting, contradicting, and neutral categories.
+7. FlightAura presents a verdict based on the available evidence, along with the relevant passenger reviews.
+
+### 2. Review Analysis
+
+1. The user enters an individual passenger review.
+2. The text is cleaned and transformed into the required model inputs.
+3. The selected sentiment models generate class probability predictions.
+4. The Weighted Soft Voting system combines predictions to determine the overall sentiment.
+5. The BiLSTM recommendation model predicts whether the passenger would recommend the airline.
+6. The results are displayed through the web interface.
+
+## Screenshots
+
+The following screenshots showcase the main functionalities and interface of FlightAura.
+
+1. **Home Page** – The FlightAura landing page featuring the aviation-inspired interface and the two primary functionalities: Claim Investigation and Review Analysis.
+
+![FlightAura Home Page](screenshots/homepage.jpg)
+
+2. **Claim Investigation** – The claim investigation interface where users enter an airline-related claim and select the airline and service aspect they want to investigate.
+
+![Claim Investigation](screenshots/claim-investigation.jpg)
+
+3. **Evidence Analysis** – Displays the investigation verdict along with supporting, contradicting, and neutral passenger reviews retrieved from the dataset.
+
+![Evidence Analysis](screenshots/evidence-analysis.jpg)
+
+4. **Review Analysis** – Shows the sentiment classification and recommendation prediction generated for an individual passenger review.
+
+![Review Analysis](screenshots/review-analysis.jpg)
+
 ## Features
 
 - **AI-Powered Review Analysis**
@@ -117,29 +160,6 @@ FlightAura uses different model configurations for its two prediction tasks.
 
 The reported values are from the model evaluation performed during development. Actual predictions may vary depending on the input review and the available dataset evidence.
 
-## How It Works
-
-FlightAura consists of two interconnected analysis workflows.
-
-### 1. Claim Investigation
-
-1. The user enters a claim about an airline and selects the relevant airline and service aspect.
-2. The claim is processed to identify its subject, aspect, and positive or negative direction.
-3. The system filters the review dataset to retrieve reviews associated with the selected airline.
-4. TF-IDF vectorization and cosine similarity are used to identify relevant passenger experiences.
-5. Retrieved reviews are evaluated using structured aspect ratings, aspect-related review text, or the sentiment prediction model when necessary.
-6. The evidence is grouped into supporting, contradicting, and neutral categories.
-7. FlightAura presents a verdict based on the available evidence, along with the relevant passenger reviews.
-
-### 2. Review Analysis
-
-1. The user enters an individual passenger review.
-2. The text is cleaned and transformed into the required model inputs.
-3. The selected sentiment models generate class probability predictions.
-4. The Weighted Soft Voting system combines predictions to determine the overall sentiment.
-5. The BiLSTM recommendation model predicts whether the passenger would recommend the airline.
-6. The results are displayed through the web interface.
-
 ## Getting Started
 
 ### 1. Clone the Repository
@@ -245,27 +265,6 @@ FlightAura uses Flask API endpoints to connect the frontend with its backend fun
 | GET | `/api/aspects` | Retrieves the supported service aspects. |
 | POST | `/api/investigate` | Processes an airline claim and returns its evidence analysis. |
 | POST | `/api/analyze-review` | Analyzes an individual passenger review. |
-
-## Screenshots
-
-The following screenshots showcase the main functionalities and interface of FlightAura.
-
-1. **Home Page** – The FlightAura landing page featuring the aviation-inspired interface and the two primary functionalities: Claim Investigation and Review Analysis.
-
-![FlightAura Home Page](screenshots/homepage.jpg)
-
-2. **Claim Investigation** – The claim investigation interface where users enter an airline-related claim and select the airline and service aspect they want to investigate.
-
-![Claim Investigation](screenshots/claim-investigation.jpg)
-
-3. **Evidence Analysis** – Displays the investigation verdict along with supporting, contradicting, and neutral passenger reviews retrieved from the dataset.
-
-![Evidence Analysis](screenshots/evidence-analysis.jpg)
-
-4. **Review Analysis** – Shows the sentiment classification and recommendation prediction generated for an individual passenger review.
-
-![Review Analysis](screenshots/review-analysis.jpg)
-
 
 ## Project Structure
 
